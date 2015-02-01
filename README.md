@@ -2,6 +2,10 @@
 
 Powershell module for Web Automation. 
 
+# Known limitation
+* Not storing / saving basic authentication for web session when exporting / importing session
+* No support for SOAP actions yet.
+
 # Intended usage:
 
 * API Stress-testing 
