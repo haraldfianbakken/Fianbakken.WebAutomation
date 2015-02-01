@@ -1,10 +1,18 @@
 # Fianbakken.WebAutomation
 
-Powershell module for Web Automation
+Powershell module for Web Automation. 
+
+# Intended usage:
+
+* API Stress-testing 
+* Security testing 
+* Web scraping
+* Advanced load-testing (through Microsoft Azure)
+
+# Installation
+Documentation is under construction... Module is to be publised to PSGet and should be installed through PSGet / Install-Module
 
 # Usage
-Documentation is under construction...
-Module is to be publised to PSGet
 
 ## Create a new websession
 ```powershell
@@ -14,10 +22,10 @@ $params=@{"Username"="user";"Password"="Passwor1d"}
 ```
 ## Add a step to the session, specifying POST method
 ```powershell
-
 $websession|Add-Step -step (create-step -Url $url -Params $params -Method POST)
 ```
-## Add a step posting regular form/data to a url
+
+## Add a step to post regular form-data to a url
 ```powershell
 $contentType="application/x-www-form-urlencoded";
 $websession|Add-Step -step (create-step -Url $url -Params $params -Method POST -ContentType $contentType)
@@ -33,6 +41,15 @@ $websession|Add-Step -step (create-step -Url (Create-Url -Url "http://requestb.i
 ## Run the actual websession (10 times)
 ```powershell
 Run-WebSession -websession $websession -Verbose -Times 10
+```
+## Export the websession definition to a file
+```powershell
+    Export-WebSessionDefinition -Websession $websession|Set-Content c:\tmp\MyWebSession.json
+```
+
+## Import the websession definiton from a file
+```powershell
+    Import-WebsessionDefinition -Path C:\tmp\MyWebSession.json
 ```
 
 ## Select the total time in a formatted manner
