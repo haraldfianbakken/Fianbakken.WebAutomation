@@ -9,16 +9,18 @@ Module is to be publised to PSGet
 ## Create a new websession
 ```powershell
 $websession = New-WebSesssion;
+$url = "http://requestb.in/1hud5671";
+$params=@{"Username"="user";"Password"="Passwor1d"} 
 ```
 ## Add a step to the session, specifying POST method
 ```powershell
-$params=@{"Username"="user";"Password"="Passwor1d"} 
-$websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params $params -Method POST)
+
+$websession|Add-Step -step (create-step -Url $url -Params $params -Method POST)
 ```
 ## Add a step posting regular form/data to a url
-$params=@{"Username"="user";"Password"="Passwor1d"} 
+```powershell
 $contentType="application/x-www-form-urlencoded";
-$websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params $params -Method POST -ContentType $contentType)
+$websession|Add-Step -step (create-step -Url $url -Params $params -Method POST -ContentType $contentType)
 ```
 
 ## Add a step using a regular GET-request 
