@@ -12,16 +12,20 @@ $websession = New-WebSesssion;
 ```
 ## Add a step to the session, specifying POST method
 ```powershell
-$websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params @{"Username"="user";"Password"="Passwor1d"} -Method POST)
+$params=@{"Username"="user";"Password"="Passwor1d"} 
+$websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params $params -Method POST)
 ```
 ## Add a step posting regular form/data to a url
-$websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params @{"Username"="user";"Password"="Passwor1d"} -Method POST -ContentType application/x-www-form-urlencoded)
+$params=@{"Username"="user";"Password"="Passwor1d"} 
+$contentType="application/x-www-form-urlencoded";
+$websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params $params -Method POST -ContentType $contentType)
 ```
 
 ## Add a step using a regular GET-request 
 
 ```powershell
-$websession|Add-Step -step (create-step -Url (Create-Url -Url "http://requestb.in/1hud5671" -Params @{"asfd"="aa";"test"="1923091"}));
+$params=@{"UserId"="12";"AlbumId"="11"} 
+$websession|Add-Step -step (create-step -Url (Create-Url -Url "http://requestb.in/1hud5671" -Params $params);
 ```
 
 ## Run the actual websession (10 times)
