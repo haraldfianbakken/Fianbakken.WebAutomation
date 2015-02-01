@@ -5,9 +5,10 @@ Powershell module for Web Automation.
 # Intended usage:
 
 * API Stress-testing 
+* Advanced load-testing (through Microsoft Azure)
 * Security testing 
 * Web scraping
-* Advanced load-testing (through Microsoft Azure)
+
 
 # Installation
 Documentation is under construction... Module is to be publised to PSGet and should be installed through PSGet / Install-Module
@@ -38,21 +39,21 @@ $params=@{"UserId"="12";"AlbumId"="11"}
 $websession|Add-Step -step (create-step -Url (Create-Url -Url "http://requestb.in/1hud5671" -Params $params);
 ```
 
-## Run the actual websession (10 times)
+## Run the websession x-num times
 ```powershell
 Run-WebSession -websession $websession -Verbose -Times 10
 ```
 ## Export the websession definition to a file
 ```powershell
-    Export-WebSessionDefinition -Websession $websession|Set-Content c:\tmp\MyWebSession.json
+Export-WebSessionDefinition -Websession $websession|Set-Content c:\tmp\MyWebSession.json
 ```
 
 ## Import the websession definiton from a file
 ```powershell
-    Import-WebsessionDefinition -Path C:\tmp\MyWebSession.json
+Import-WebsessionDefinition -Path C:\tmp\MyWebSession.json
 ```
 
-## Select the total time in a formatted manner
+## Select the time for each step in a formatted manner from the session
 ```powershell
 $websession.RunTimes|Select @{Name="TotalMilliseconds";Expression={$_.ResponseTime.TotalMilliseconds}}, @{Name="Url";Expression={$websession.Steps[$_.StepIndex].Url}}, @{Name="Method";Expression={$websession.Steps[$_.StepIndex].Method}}
 ```
