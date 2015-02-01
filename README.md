@@ -14,7 +14,7 @@ $websession = New-WebSesssion;
 ```powershell
 $websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params @{"Username"="user";"Password"="Passwor1d"} -Method POST)
 ```
-## Add a normal forms-data post as a step
+## Add a step posting regular form/data to a url
 $websession|Add-Step -step (create-step -Url "http://requestb.in/1hud5671" -Params @{"Username"="user";"Password"="Passwor1d"} -Method POST -ContentType application/x-www-form-urlencoded)
 ```
 
@@ -29,8 +29,8 @@ $websession|Add-Step -step (create-step -Url (Create-Url -Url "http://requestb.i
 Run-WebSession -websession $websession -Verbose -Times 10
 ```
 
-## Show some aggregated data 
+## Select the total time in a formatted manner
 ```powershell
-$websession.RunTimes|Select @{Name="TotalMilliseconds";Expression={$_.ResponseTime.TotalMilliseconds}}, @{Name="Url";Expression={$_.Url}}, @{Name="Method";Expression={$_.Method}}
+$websession.RunTimes|Select @{Name="TotalMilliseconds";Expression={$_.ResponseTime.TotalMilliseconds}}, @{Name="Url";Expression={$websession.Steps[$_.StepIndex].Url}}, @{Name="Method";Expression={$websession.Steps[$_.StepIndex].Method}}
 ```
 
