@@ -11,7 +11,7 @@ Powershell module for Web Automation.
 
 
 # Installation
-Documentation is under construction... Module is to be publised to PSGet and should be installed through PSGet / Install-Module
+Documentation is under construction... Module is should be published under the Powershell gallery or PSGet and should be installed through Install-Module
 
 # Usage
 
