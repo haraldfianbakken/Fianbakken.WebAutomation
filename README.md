@@ -6,7 +6,8 @@ Powershell module for Web Automation.
 
 * API Stress-testing 
 * Advanced load-testing (through Microsoft Azure)
-* Security testing 
+* API data testing 
+* Security testing / bruteforce / capthas / ddos
 * Web scraping
 
 
